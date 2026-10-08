@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { 
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart 
-} from 'recharts';
+// Recharts removed to prevent React 19 crash
 import { 
   Wallet, TrendingUp, TrendingDown, Plus, Sparkles, Send, 
   Coffee, ShoppingBag, Car, Home, Smartphone
@@ -129,29 +127,17 @@ export default function App() {
             <span>Weekly Overview</span>
           </div>
           <div style={{ width: '100%', height: 300 }}>
-            <ResponsiveContainer>
-              <AreaChart data={initialData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <defs>
-                  <linearGradient id="colorExp" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#ef4444" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#ef4444" stopOpacity={0}/>
-                  </linearGradient>
-                  <linearGradient id="colorInc" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#10b981" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
-                  </linearGradient>
-                </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
-                <XAxis dataKey="name" stroke="#94a3b8" tick={{fill: '#94a3b8'}} axisLine={false} tickLine={false} />
-                <YAxis stroke="#94a3b8" tick={{fill: '#94a3b8'}} axisLine={false} tickLine={false} />
-                <Tooltip 
-                  contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #334155', borderRadius: '8px' }}
-                  itemStyle={{ color: '#f8fafc' }}
-                />
-                <Area type="monotone" dataKey="expenses" stroke="#ef4444" fillOpacity={1} fill="url(#colorExp)" strokeWidth={3} />
-                <Area type="monotone" dataKey="income" stroke="#10b981" fillOpacity={1} fill="url(#colorInc)" strokeWidth={3} />
-              </AreaChart>
-            </ResponsiveContainer>
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: '8px', height: '100%', padding: '20px 0' }}>
+              {initialData.map((d, i) => (
+                <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', gap: '5px' }}>
+                  <div style={{ display: 'flex', gap: '4px', height: '100%', alignItems: 'flex-end', width: '100%', justifyContent: 'center' }}>
+                    <div style={{ width: '40%', height: `${(d.expenses / 300) * 100}%`, background: 'var(--danger)', borderRadius: '4px', opacity: 0.8 }}></div>
+                    <div style={{ width: '40%', height: `${(d.income / 500) * 100}%`, background: 'var(--accent)', borderRadius: '4px', opacity: 0.8 }}></div>
+                  </div>
+                  <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>{d.name}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div style={{ marginTop: '2rem' }}>
