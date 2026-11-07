@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "name": "Expensa AI Android",
+    "slug": "expensa-ai-android",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "android": {
+      "package": "com.expensaai.android"
+    }
+  }
+}

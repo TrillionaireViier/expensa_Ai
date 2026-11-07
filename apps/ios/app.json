@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "Expensa AI iOS",
+    "slug": "expensa-ai-ios",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "ios": {
+      "bundleIdentifier": "com.expensaai.ios",
+      "supportsTablet": true
+    }
+  }
+}
